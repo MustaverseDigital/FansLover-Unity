@@ -3,4 +3,6 @@
 @char StudentTina.Idle avatar:Tina/Default pos:50,-10
 Hello I am Tina!
 What is your name?
+@input PlayerName summary:"Choose your name."
 @stop
+You can call me {PlayerName}.
