@@ -1,0 +1,17 @@
+@printer Dialogue
+@back SportsField
+@char StudentTina.Idle avatar:Tina/Default pos:50,-10
+@set loadingStoryID=0
+Tina: Hello I am Tina!
+# StartConversation
+Tina: Is anything I can help?
+@input PlayerReply summary:"Please enter your reply."
+Tina: Let me think...
+@wait 0.5
+Tina: Oh, I find the answer!
+@wait 0.5
+Tina: {LLM}
+@if loadingStoryID=0
+@goto .StartConversation
+@else
+@goto StudentStory
