@@ -168,6 +168,9 @@ MonoBehaviour:
       guid: dd85ce99288c2f8488447fa511b1c0d6
   - Id: Scripts
     Resources:
+    - name: LLMLoopScript
+      pathPrefix: Scripts
+      guid: 9b5f4d440cfe54c66866b7f8ec3dc125
     - name: StudentStory
       pathPrefix: Scripts
       guid: fa220794435f5438091ec3cdaffa862b
