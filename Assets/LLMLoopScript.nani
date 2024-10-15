@@ -6,6 +6,7 @@ Tina: Hello I am Tina!
 # StartConversation
 Tina: Is anything I can help?
 @input PlayerReply summary:"Please enter your reply."
+@stop
 Tina: Let me think...
 @wait 0.5
 Tina: Oh, I find the answer!

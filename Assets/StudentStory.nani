@@ -5,21 +5,25 @@ Tina: Hello! I’m Tina, and it’s such a beautiful day today, isn't it? How ab
 @wait 0.5
 Tina: Let’s start off easy! What is your name?
 @input PlayerName summary:"Enter your name."
+@stop
 Tina: Nice to meet you, {PlayerName}! Alright, let’s see if you’re ready for my questions.
 @wait 0.5
 Tina: Imagine this... You have 3 apples, and I give you 2 more. How many apples do you have now?
 @input MathAnswer1 summary:"Enter your answer."
+@stop
 @if MathAnswer1=="5"
     Tina: Correct! You're good at this, {PlayerName}!
     @wait 0.5
     Tina: I’m impressed! Now, imagine we’re walking through a park, and there are 8 birds in the trees. Suddenly, 3 fly away. How many are left?
     @input MathAnswer2 summary:"Enter your answer."
+    @stop
     @if MathAnswer2=="5"
         Tina: Wow, you got it! You're really sharp!
         @wait 0.5
         Tina: Let's enjoy the moment here a little, shall we? The gentle breeze, the chirping birds... it's perfect for a small reward!
         Tina: But before that, one last question... not a math one though! What’s your favorite number? 
         @input FavoriteNumber summary:"Enter your favorite number."
+        @stop
         Tina: Ah, {FavoriteNumber}, that’s a great choice! Well, since you’ve been such a great sport, here’s your reward!
         @goto RewardScene
     @else
