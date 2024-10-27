@@ -11,9 +11,10 @@ const Game = () => {
   });
 
   // We'll use a state to store the device pixel ratio.
-  const [devicePixelRatio, setDevicePixelRatio] = useState(window.devicePixelRatio);
+  const [devicePixelRatio, setDevicePixelRatio] = useState(typeof window !== 'undefined' ? window.devicePixelRatio : 1);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     // A function which will update the device pixel ratio of the Unity
     // Application to match the device pixel ratio of the browser.
     const updateDevicePixelRatio = () => {
