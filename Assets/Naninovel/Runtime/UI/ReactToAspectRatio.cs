@@ -27,6 +27,8 @@ namespace Naninovel
             aspectMonitor = new AspectMonitor();
             aspectMonitor.OnChanged += HandleAspectChanged;
             aspectMonitor.Start(updateDelay, this);
+            //Hack 
+            HandleAspectChanged(aspectMonitor);
         }
 
         private void OnDestroy ()

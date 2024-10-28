@@ -30,7 +30,7 @@ public class NodgeLayout : UIBehaviour
             var resolition = Screen.currentResolution;
             if (scaler != null && scaler.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize) { scale = scaler.referenceResolution.y / resolition.height; }
             Vector2 sizeDelta = nodge.sizeDelta;
-            if (type == LayoutType.Header) { sizeDelta.y = (resolition.height - Screen.safeArea.yMax) * scale; }
+            if (type == LayoutType.Header) { sizeDelta.y = (resolition.height * 0.07f) * scale; }
             else if (type == LayoutType.Footer) { sizeDelta.y = Screen.safeArea.yMin * scale; }
             nodge.sizeDelta = sizeDelta;
             VerticalLayoutGroup layoutGroup = this.GetComponent<VerticalLayoutGroup>();

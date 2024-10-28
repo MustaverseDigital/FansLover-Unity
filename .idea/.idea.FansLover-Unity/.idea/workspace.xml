@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4bf1415e-c3ae-4a8b-a704-3cbfb2ec5ee1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FansLover-Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FansLover-Unity/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Naninovel/Runtime/UI/ReactToAspectRatio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Naninovel/Runtime/UI/ReactToAspectRatio.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NaninovelData/Metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NaninovelData/Metadata.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextChatUI/Scripts/UI/NodgeLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextChatUI/Scripts/UI/NodgeLayout.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2021.3.39f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.42f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -49,7 +53,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2021.3.39f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.42f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -87,6 +91,7 @@
       <updated>1728984567666</updated>
       <workItem from="1728984568796" duration="1593000" />
       <workItem from="1729328939884" duration="3793000" />
+      <workItem from="1730128647038" duration="2577000" />
     </task>
     <servers />
   </component>
