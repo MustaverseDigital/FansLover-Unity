@@ -1,13 +1,12 @@
 "use client"
-// import React, { useState, useEffect } from 'react';
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 const Game = () => {
   const { unityProvider } = useUnityContext({
-    loaderUrl: "build/docs.loader.js",
-    dataUrl: "build/docs.data",
-    frameworkUrl: "build/docs.framework.js",
-    codeUrl: "build/docs.wasm",
+    loaderUrl: "/Build/docs.loader.js",
+    dataUrl: "/Build/docs.data",
+    frameworkUrl: "/Build/docs.framework.js",
+    codeUrl: "/Build/docs.wasm",
   });
 
   // // We'll use a state to store the device pixel ratio.
@@ -49,7 +48,7 @@ const Game = () => {
       <div className="relative w-auto h-auto bg-white rounded-lg p-1">
         <Unity unityProvider={unityProvider}
           style={{ width: '100%', height: '80vh' }}
-          // devicePixelRatio={devicePixelRatio}
+        // devicePixelRatio={devicePixelRatio}
         />
       </div>
       {/* Bottom Nav */}
