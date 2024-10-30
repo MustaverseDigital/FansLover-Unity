@@ -49,7 +49,7 @@ const Game = () => {
       <div className="relative w-auto h-auto bg-white rounded-lg p-1">
         <Unity unityProvider={unityProvider}
           style={{ width: '100%', height: '80vh' }}
-          devicePixelRatio={devicePixelRatio}
+          // devicePixelRatio={devicePixelRatio}
         />
       </div>
       {/* Bottom Nav */}
