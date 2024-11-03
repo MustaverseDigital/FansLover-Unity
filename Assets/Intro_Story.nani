@@ -1,0 +1,24 @@
+@printer Dialogue
+@back Tina_Intro_1
+Tina: *It's a quiet afternoon, and Tina is waiting in the living room for her new tutor to arrive.*
+
+# Initial Meeting
+Tina: Oh! You must be the new tutor my mom hired.
+@wait 1.0
+Tina: Nice to meet you. I'm Tina.
+@wait 1.0
+
+@back Tina_Intro_2
+Tina: So... what kind of tutor are you? Are you strict or... fun?
+@wait 1.5
+
+# Conversation and Curiosity
+Tina: I mean, I've had tutors before, but they were... well, let's just say they weren't very exciting.
+@wait 1.5
+
+@back Tina_Intro_3
+Tina: But you seem different. I have a good feeling about this!
+@wait 1.0
+
+@goto LLMLoopScript
+@stop

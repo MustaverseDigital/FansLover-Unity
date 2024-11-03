@@ -168,6 +168,9 @@ MonoBehaviour:
       guid: dd85ce99288c2f8488447fa511b1c0d6
   - Id: Scripts
     Resources:
+    - name: Intro_Story
+      pathPrefix: Scripts
+      guid: 852bc324af8b647879447daf81c4021c
     - name: LLMLoopScript
       pathPrefix: Scripts
       guid: 9b5f4d440cfe54c66866b7f8ec3dc125
@@ -186,6 +189,30 @@ MonoBehaviour:
       guid: d2cc2eb4dae154f3fa15cddefd7c9e66
   - Id: Backgrounds/9da78278-39e8-4ab2-8fa1-3ab80d4dad52
     Resources:
-    - name: SportsField
+    - name: Tina_Intro_1
       pathPrefix: Backgrounds/MainBackground
-      guid: b28d24bb17e794c0bbe565676ceae6bf
+      guid: abfeeee41cc664506af945a62c1065a9
+    - name: Tina_Intro_2
+      pathPrefix: Backgrounds/MainBackground
+      guid: 737d546ebaced4d549ac1dc29bf0ffbe
+    - name: Tina_Intro_3
+      pathPrefix: Backgrounds/MainBackground
+      guid: 939365939364d417ba0e2fd021e12f00
+    - name: Tina_Study_1
+      pathPrefix: Backgrounds/MainBackground
+      guid: 3f105a3633e724750bff628e5614f026
+    - name: Tina_Study_2
+      pathPrefix: Backgrounds/MainBackground
+      guid: f5bdd32b5439244a4bdd1394d467d56f
+    - name: Tina_Study_3
+      pathPrefix: Backgrounds/MainBackground
+      guid: d5f2e82efc6214a5e840ed98a9531e2a
+    - name: Tina_Result_1
+      pathPrefix: Backgrounds/MainBackground
+      guid: 3c18198c9da284f2ea6f381059e6cae4
+    - name: Tina_Result_2
+      pathPrefix: Backgrounds/MainBackground
+      guid: 73a2e9a811e074c669aa41b5c29ff896
+    - name: Tina_Result_3
+      pathPrefix: Backgrounds/MainBackground
+      guid: 40e00691bbef746b888dd842031a2724

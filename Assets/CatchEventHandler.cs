@@ -1,10 +1,8 @@
-using System;
 using Naninovel;
 using UnityEngine;
 
 public class CatchEventHandler : MonoBehaviour
 {
-    private int _replyTimes = 0;
     private AIGFController _aigfController;
 
     private void Start()
@@ -26,19 +24,17 @@ public class CatchEventHandler : MonoBehaviour
 
     private void AddAiTinaReply(string playerReplyMessage)
     {
-        _replyTimes++;
-        if (_replyTimes > 2)
-        {
-            Engine.GetService<CustomVariableManager>()
-                .SetVariableValue("loadingStoryID", "1");
-        }
         _aigfController.SendMessageToApi(playerReplyMessage , ResponseCallback);
-        
     }
 
     private void ResponseCallback(AIGFController.APIResponse obj)
     {
         Engine.GetService<CustomVariableManager>()
             .SetVariableValue("LLM", $"{obj.text}");
+        if (obj.unlocked)
+        {
+            Engine.GetService<CustomVariableManager>()
+                .SetVariableValue("loadingStoryID", "1");
+        }
     }
 }

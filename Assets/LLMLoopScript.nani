@@ -1,17 +1,22 @@
 @printer Dialogue
-@back SportsField
-@char StudentTina.Idle avatar:Tina/Default pos:50,-10
 @set loadingStoryID=0
-Tina: Hello I am Tina!
+@set replyTimes=1
+@set LLM="Tina"
+@back Tina_Study_1
+Tina: Anyway, where should we start? I promise I’ll do my best to learn!
+@wait 1.0
 # StartConversation
-Tina: Is anything I can help?
 @input PlayerReply summary:"Please enter your reply."
 @stop
 Tina: Let me think...
-@wait 0.5
-Tina: Oh, I find the answer!
-@wait 0.5
+@wait 1.5
+@set replyTimes+=1
+@back Tina_Intro_{replyTimes}
+@if replyTimes>=3
+@set replyTimes=1
+@endif
 Tina: {LLM}
+
 @if loadingStoryID=0
 @goto .StartConversation
 @else

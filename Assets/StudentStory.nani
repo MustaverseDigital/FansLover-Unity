@@ -1,45 +1,29 @@
 @printer Dialogue
-@back SportsField
-@char StudentTina.Idle avatar:Tina/Default pos:50,-10
-Tina: Hello! I’m Tina, and it’s such a beautiful day today, isn't it? How about we spend a few minutes together solving some fun math problems? But don't worry, it’s not too difficult!
-@wait 0.5
-Tina: Let’s start off easy! What is your name?
-@input PlayerName summary:"Enter your name."
-@stop
-Tina: Nice to meet you, {PlayerName}! Alright, let’s see if you’re ready for my questions.
-@wait 0.5
-Tina: Imagine this... You have 3 apples, and I give you 2 more. How many apples do you have now?
-@input MathAnswer1 summary:"Enter your answer."
-@stop
-@if MathAnswer1=="5"
-    Tina: Correct! You're good at this, {PlayerName}!
-    @wait 0.5
-    Tina: I’m impressed! Now, imagine we’re walking through a park, and there are 8 birds in the trees. Suddenly, 3 fly away. How many are left?
-    @input MathAnswer2 summary:"Enter your answer."
-    @stop
-    @if MathAnswer2=="5"
-        Tina: Wow, you got it! You're really sharp!
-        @wait 0.5
-        Tina: Let's enjoy the moment here a little, shall we? The gentle breeze, the chirping birds... it's perfect for a small reward!
-        Tina: But before that, one last question... not a math one though! What’s your favorite number? 
-        @input FavoriteNumber summary:"Enter your favorite number."
-        @stop
-        Tina: Ah, {FavoriteNumber}, that’s a great choice! Well, since you’ve been such a great sport, here’s your reward!
-        @goto RewardScene
-    @else
-        Tina: Hmm, close but not quite! No worries, let's go through it again from the start.
-        @goto .StartMath
-    @endif
-@else
-    Tina: Hmm, not quite! Don’t worry, we’ll get there! Let's try again.
-    @goto .StartMath
-@endif
+@back Tina_Result_1
 
-# RewardScene
-Tina: Congratulations, {PlayerName}! You’ve earned a special prize for your effort. 🌟 You’ve done so well today, and I’m really proud of you! Let's enjoy the rest of the day!
-Tina: Here is your reward NFT by URL ........
-@stop
+# Study Fatigue
+Tina: *After hours of studying, Tina stretches her arms and lets out a small sigh.*
 
-# StartMath
-Tina: Alright, let’s start again. How many apples do you have if I give you 2 more, and you already have 3?
-@input MathAnswer1 summary:"Enter your answer."
+Tina: Whew... I think my brain might explode soon!
+@wait 1.0
+Tina: I didn’t realize studying could be this exhausting. But... I’m glad you're here to make it a bit more bearable.
+@wait 1.5
+
+@back Tina_Result_2
+Tina: You know, I didn’t expect a tutor to be so easy to talk to.
+@wait 1.0
+Tina: Most people would probably just lecture me the whole time, but you... you actually listen.
+@wait 1.5
+
+# Slightly Flirty
+@back Tina_Result_3
+Tina: I wonder... do you treat all your students this well, or am I just special?
+@wait 1.5
+Tina: Just kidding... kind of. [wait]
+@wait 1.0
+Tina: But really, I’m glad I met you. Studying feels a little less lonely with you around.
+@wait 1.5
+
+Tina: *Tina smiles softly, her cheeks slightly flushed, as she gazes at her tutor with a newfound warmth.*
+Tina: This is a small gift for you *NFT TOKEN*
+@stop
