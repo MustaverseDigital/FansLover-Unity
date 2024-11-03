@@ -1,7 +1,6 @@
 @printer Dialogue
 @back Tina_Result_1
 
-# Study Fatigue
 Tina: *After hours of studying, Tina stretches her arms and lets out a small sigh.*
 
 Tina: Whew... I think my brain might explode soon!
@@ -15,7 +14,6 @@ Tina: You know, I didn’t expect a tutor to be so easy to talk to.
 Tina: Most people would probably just lecture me the whole time, but you... you actually listen.
 @wait 1.5
 
-# Slightly Flirty
 @back Tina_Result_3
 Tina: I wonder... do you treat all your students this well, or am I just special?
 @wait 1.5
