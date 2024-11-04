@@ -35,7 +35,7 @@ const Game = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100">
       {/* Top Bar */}
-      <div className="absolute top-4 left-0 right-0 flex justify-between items-center p-2">
+      <div className="absolute top-4  flex justify-between items-center p-2 w-full md:w-1/2">
         <div className="flex items-center justify-evenly bg-white rounded-3xl p-3">
           <div className="bg-orange-400 w-6 h-6 rounded-full"></div>
           <span className="font-bold">$ 73</span>
@@ -46,7 +46,7 @@ const Game = () => {
         </div>
       </div>
 
-      <div className="relative w-auto h-auto bg-white rounded-lg p-1">
+      <div className="relative w-auto h-auto bg-white rounded-lg p-1 md:w-1/2">
         <Unity unityProvider={unityProvider}
           style={{
             width: '100%', height: 'calc(100vh - 16rem)',
@@ -56,7 +56,7 @@ const Game = () => {
         />
       </div>
       {/* Bottom Nav */}
-      <div className="absolute bottom-0 left-0 right-0 p-4">
+      <div className="absolute bottom-0 p-4 w-full md:w-1/2">
         <div className="flex justify-between px-8">
           <button className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
             <span className="transform rotate-45">↑</span>
