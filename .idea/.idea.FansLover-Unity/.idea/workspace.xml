@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4bf1415e-c3ae-4a8b-a704-3cbfb2ec5ee1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FansLover-Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FansLover-Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Intro_Story.nani" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Intro_Story.nani" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CatchEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CatchEventHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NaninovelData/Metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NaninovelData/Metadata.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NaninovelData/Resources/Naninovel/Configuration/BackgroundsConfiguration.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NaninovelData/Resources/Naninovel/Configuration/BackgroundsConfiguration.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Dialog Only Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Dialog Only Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StudentStory.nani" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StudentStory.nani" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tina Story Resource/AIGFController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tina Story Resource/AIGFController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +94,8 @@
       <workItem from="1728984568796" duration="1593000" />
       <workItem from="1729328939884" duration="3793000" />
       <workItem from="1730128647038" duration="3800000" />
-      <workItem from="1730528395442" duration="6684000" />
+      <workItem from="1730528395442" duration="7256000" />
+      <workItem from="1730700889843" duration="2261000" />
     </task>
     <servers />
   </component>

@@ -1,9 +1,11 @@
 using Naninovel;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CatchEventHandler : MonoBehaviour
 {
     private AIGFController _aigfController;
+    [SerializeField] private Scrollbar scrollbarUI;
 
     private void Start()
     {
@@ -24,6 +26,7 @@ public class CatchEventHandler : MonoBehaviour
 
     private void AddAiTinaReply(string playerReplyMessage)
     {
+        scrollbarUI.gameObject.SetActive(true);
         _aigfController.SendMessageToApi(playerReplyMessage , ResponseCallback);
     }
 
@@ -36,5 +39,8 @@ public class CatchEventHandler : MonoBehaviour
             Engine.GetService<CustomVariableManager>()
                 .SetVariableValue("loadingStoryID", "1");
         }
+
+        // ReSharper disable once PossibleLossOfFraction
+        scrollbarUI.size = obj.love / 100;
     }
 }

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class AIGFController : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class AIGFController : MonoBehaviour
     private string url = "https://ai-gf.tinalee.bot/chat";
     [SerializeField]
     private int userId = 11;
-    
+
+    private void Start()
+    {
+        //Demo first 
+        userId = Random.Range(0, 10000);
+    }
 
     // 呼叫 API 的方法
     public void SendMessageToApi(string message , Action<APIResponse> responseCallback)

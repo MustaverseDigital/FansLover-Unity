@@ -44,7 +44,7 @@ MonoBehaviour:
       y: 0
       width: 1
       height: 1
-    MatchMode: 0
+    MatchMode: 3
     CustomMatchRatio: 0
     Poses: []
   Metadata:
