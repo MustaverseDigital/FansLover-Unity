@@ -11,10 +11,8 @@ using Random = UnityEngine.Random;
 
 public class AIGFController : MonoBehaviour
 {
-    [SerializeField]
-    private string url = "https://ai-gf.tinalee.bot/chat";
-    [SerializeField]
-    private int userId = 11;
+    [SerializeField] private string url = "https://ai-gf.tinalee.bot/chat";
+    [SerializeField] private int userId = 11;
 
     private void Start()
     {
@@ -23,12 +21,12 @@ public class AIGFController : MonoBehaviour
     }
 
     // 呼叫 API 的方法
-    public void SendMessageToApi(string message , Action<APIResponse> responseCallback)
+    public void SendMessageToApi(string message, Action<APIResponse> responseCallback)
     {
-        StartCoroutine(SendRequestCoroutine(message , responseCallback));
+        StartCoroutine(SendRequestCoroutine(message, responseCallback));
     }
 
-    IEnumerator SendRequestCoroutine(string message , Action<APIResponse> responseCallback = null)
+    IEnumerator SendRequestCoroutine(string message, Action<APIResponse> responseCallback = null)
     {
         // 建立請求
         UnityWebRequest request = new UnityWebRequest(url, "POST");
@@ -44,7 +42,7 @@ public class AIGFController : MonoBehaviour
         {
             // 解析 JSON
             APIResponse response = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
-            
+
             responseCallback?.Invoke(response);
 
             // 更新 UI 或進行其他處理
@@ -55,6 +53,10 @@ public class AIGFController : MonoBehaviour
         else
         {
             Debug.LogError("API 請求失敗: " + request.error);
+            Engine.GetService<CustomVariableManager>()
+                .SetVariableValue("LLM", $"Tina 壞掉惹(\u260d﹏\u2070) {request.error}");
+            Engine.GetService<CustomVariableManager>()
+                .SetVariableValue("LLMResponse", "1");
         }
     }
 

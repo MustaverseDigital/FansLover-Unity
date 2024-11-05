@@ -41,6 +41,6 @@ public class CatchEventHandler : MonoBehaviour
         }
 
         // ReSharper disable once PossibleLossOfFraction
-        scrollbarUI.size = obj.love / 100;
+        scrollbarUI.size = (float) obj.love / 100;
     }
 }
