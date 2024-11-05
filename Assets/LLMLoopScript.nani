@@ -8,10 +8,10 @@ Tina: Anyway, where should we start? I promise I’ll do my best to learn!
 # StartConversation
 @input PlayerReply summary:"Please enter your reply."
 @stop
-Tina: Let me think...
+Tina: ... [wait 1.5]
 @wait 1.5
 @set replyTimes+=1
-@back Tina_Intro_{replyTimes}
+@back Tina_Study_{replyTimes}
 @if replyTimes>=3
 @set replyTimes=1
 @endif
