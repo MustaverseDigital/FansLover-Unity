@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Naninovel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -48,6 +49,8 @@ public class AIGFController : MonoBehaviour
 
             // 更新 UI 或進行其他處理
             Debug.Log("API 回應: " + JsonUtility.ToJson(response));
+            Engine.GetService<CustomVariableManager>()
+                .SetVariableValue("LLMResponse", "1");
         }
         else
         {

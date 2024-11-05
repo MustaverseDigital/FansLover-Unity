@@ -2,20 +2,29 @@
 @set loadingStoryID=0
 @set replyTimes=1
 @set LLM="Tina"
+@set LLMResponse=0
 @back Tina_Study_1
 Tina: Anyway, where should we start? I promise I’ll do my best to learn!
 @wait 1.0
 # StartConversation
 @input PlayerReply summary:"Please enter your reply."
 @stop
-Tina: ... [wait 1.5]
-@wait 1.5
+
+#LLMLoop
+Tina: ...
+@wait 1
+@if LLMResponse=0
+@goto .LLMLoop
+@endif
+
 @set replyTimes+=1
 @back Tina_Study_{replyTimes}
 @if replyTimes>=3
 @set replyTimes=1
 @endif
+
 Tina: {LLM}
+@set LLMResponse=0
 
 @if loadingStoryID=0
 @goto .StartConversation
