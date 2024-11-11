@@ -15,9 +15,6 @@ const Game = () => {
   });
 
   const userFriendlyAddress = useTonAddress();
-  const rawAddress = useTonAddress(false);
-  console.log("userFriendlyAddress", userFriendlyAddress);
-  console.log("rawAddress", rawAddress);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -25,6 +22,7 @@ const Game = () => {
       sendMessage("ReactBridge", "sendAddress", userFriendlyAddress);
     };
     sendAddress(userFriendlyAddress);
+    console.log("sendAddress in next", userFriendlyAddress);
   }, [isLoaded, sendMessage, userFriendlyAddress]);
 
   // We'll use a state to store the device pixel ratio.
