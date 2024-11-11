@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useTonAddress, TonConnectButton } from '@tonconnect/ui-react';
+
 
 const Game = () => {
   const { unityProvider } = useUnityContext({
@@ -8,6 +10,11 @@ const Game = () => {
     frameworkUrl: "/Build/docs.framework.js",
     codeUrl: "/Build/docs.wasm",
   });
+
+  const userFriendlyAddress = useTonAddress();
+  const rawAddress = useTonAddress(false);
+  console.log('userFriendlyAddress', userFriendlyAddress);
+  console.log('rawAddress', rawAddress);
 
   // We'll use a state to store the device pixel ratio.
   const [devicePixelRatio, setDevicePixelRatio] = useState(
@@ -43,10 +50,7 @@ const Game = () => {
           <div className="bg-orange-400 w-6 h-6 rounded-full"></div>
           <span className="font-bold">$ 73</span>
         </div>
-        <div className="flex items-center gap-2 bg-white rounded-3xl p-3">
-          <div className="bg-blue-500 w-6 h-6 rounded-full"></div>
-          <span className="font-bold">UQBd...fJYB</span>
-        </div>
+        <TonConnectButton />
       </div>
 
       <div className="relative w-auto h-auto bg-white rounded-lg p-1">
