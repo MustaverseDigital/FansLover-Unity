@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import { useTonAddress, TonConnectButton } from '@tonconnect/ui-react';
-
+import { useTonAddress, TonConnectButton } from "@tonconnect/ui-react";
 
 const Game = () => {
-  const { unityProvider } = useUnityContext({
+  const {
+    unityProvider,
+    isLoaded,
+    sendMessage,
+  } = useUnityContext({
     loaderUrl: "/Build/docs.loader.js",
     dataUrl: "/Build/docs.data",
     frameworkUrl: "/Build/docs.framework.js",
@@ -13,8 +16,16 @@ const Game = () => {
 
   const userFriendlyAddress = useTonAddress();
   const rawAddress = useTonAddress(false);
-  console.log('userFriendlyAddress', userFriendlyAddress);
-  console.log('rawAddress', rawAddress);
+  console.log("userFriendlyAddress", userFriendlyAddress);
+  console.log("rawAddress", rawAddress);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    function sendAddress(userFriendlyAddress: string) {
+      sendMessage("ReactBridge", "sendAddress", userFriendlyAddress);
+    };
+    sendAddress(userFriendlyAddress);
+  }, [isLoaded, sendMessage, userFriendlyAddress]);
 
   // We'll use a state to store the device pixel ratio.
   const [devicePixelRatio, setDevicePixelRatio] = useState(
