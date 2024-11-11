@@ -12,8 +12,8 @@ namespace DefaultNamespace
         {
             controller = FindObjectOfType<AIGFController>();
         }
-
-        public void SandAddress(string address) 
+        //For react call 
+        public void sendAddress(string address) 
         {
             controller.SetUserID(address);
         }
