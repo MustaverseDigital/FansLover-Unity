@@ -39,7 +39,8 @@ public class CatchEventHandler : MonoBehaviour
             Engine.GetService<CustomVariableManager>()
                 .SetVariableValue("loadingStoryID", "1");
         }
-
+        Engine.GetService<CustomVariableManager>()
+            .SetVariableValue("loveValue", $"{obj.love}");
         // ReSharper disable once PossibleLossOfFraction
         scrollbarUI.size = (float) obj.love / 100;
     }

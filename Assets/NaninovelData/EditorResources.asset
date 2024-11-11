@@ -207,6 +207,9 @@ MonoBehaviour:
     - name: Tina_Study_3
       pathPrefix: Backgrounds/MainBackground
       guid: d5f2e82efc6214a5e840ed98a9531e2a
+    - name: Tina_Study_4
+      pathPrefix: Backgrounds/MainBackground
+      guid: 3c18198c9da284f2ea6f381059e6cae4
     - name: Tina_Result_1
       pathPrefix: Backgrounds/MainBackground
       guid: 40e00691bbef746b888dd842031a2724

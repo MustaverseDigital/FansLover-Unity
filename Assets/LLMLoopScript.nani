@@ -1,8 +1,8 @@
 @printer Dialogue
 @set loadingStoryID=0
-@set replyTimes=1
 @set LLM="Tina"
 @set LLMResponse=0
+@set loveValue=0
 @back Tina_Study_1
 Tina: Anyway, where should we start? I promise I’ll do my best to learn!
 @wait 1.0
@@ -17,10 +17,14 @@ Tina: ...
 @goto .LLMLoop
 @endif
 
-@set replyTimes+=1
-@back Tina_Study_{replyTimes}
-@if replyTimes>=3
-@set replyTimes=1
+@if loveValue>=80
+@back Tina_Study_4
+@elseif loveValue>=50
+@back Tina_Study_3
+@elseif loveValue>=20
+@back Tina_Study_2
+@else
+@back Tina_Study_1
 @endif
 
 Tina: {LLM}
