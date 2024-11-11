@@ -212,10 +212,12 @@ MonoBehaviour:
       guid: 3c18198c9da284f2ea6f381059e6cae4
     - name: Tina_Result_1
       pathPrefix: Backgrounds/MainBackground
-      guid: 40e00691bbef746b888dd842031a2724
+      guid: 73a2e9a811e074c669aa41b5c29ff896
     - name: Tina_Result_2
       pathPrefix: Backgrounds/MainBackground
       guid: 633fa4c77d77b46ee8de2b82a7a856cd
-    - name: Tina_Result_3
-      pathPrefix: Backgrounds/MainBackground
-      guid: 73a2e9a811e074c669aa41b5c29ff896
+  - Id: Audio
+    Resources:
+    - name: bgm1
+      pathPrefix: Audio
+      guid: cff582695b3c04f66a4a979d7be86c37

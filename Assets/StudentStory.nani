@@ -8,13 +8,12 @@ Tina: Whew... I think my brain might explode soon!
 Tina: I didn’t realize studying could be this exhausting. But... I’m glad you're here to make it a bit more bearable.
 @wait 1.5
 
-@back Tina_Result_2
 Tina: You know, I didn’t expect a tutor to be so easy to talk to.
 @wait 1.0
 Tina: Most people would probably just lecture me the whole time, but you... you actually listen.
 @wait 1.5
+@back Tina_Result_2
 
-@back Tina_Result_3
 Tina: I wonder... do you treat all your students this well, or am I just special?
 @wait 1.5
 Tina: Just kidding... kind of.
