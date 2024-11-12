@@ -217,7 +217,4 @@ MonoBehaviour:
       pathPrefix: Backgrounds/MainBackground
       guid: 633fa4c77d77b46ee8de2b82a7a856cd
   - Id: Audio
-    Resources:
-    - name: bgm1
-      pathPrefix: Audio
-      guid: cff582695b3c04f66a4a979d7be86c37
+    Resources: []
