@@ -1,3 +1,4 @@
+import { AppProvider } from "@/context/app-context";
 import "@/styles/globals.css";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import type { AppProps } from "next/app";
@@ -10,7 +11,9 @@ export default function App({ Component, pageProps }: AppProps) {
       //     twaReturnUrl: "https://t.me/tinaaaaalee_gf_bot",
       //   }}
     >
-      <Component {...pageProps} />
+      <AppProvider>
+        <Component {...pageProps} />
+      </AppProvider>
     </TonConnectUIProvider>
   );
 }

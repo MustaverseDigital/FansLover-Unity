@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useTonAddress, TonConnectButton } from "@tonconnect/ui-react";
+import { useRouter } from "next/router";
 
 const Game = () => {
-  const {
-    unityProvider,
-    isLoaded,
-    sendMessage,
-  } = useUnityContext({
+  const { unityProvider, isLoaded, sendMessage } = useUnityContext({
     loaderUrl: "/Build/docs.loader.js",
     dataUrl: "/Build/docs.data",
     frameworkUrl: "/Build/docs.framework.js",
     codeUrl: "/Build/docs.wasm",
   });
+  const router = useRouter();
 
   const userFriendlyAddress = useTonAddress();
 
@@ -20,7 +18,7 @@ const Game = () => {
     if (!isLoaded) return;
     function sendAddress(userFriendlyAddress: string) {
       sendMessage("ReactBridge", "sendAddress", userFriendlyAddress);
-    };
+    }
     sendAddress(userFriendlyAddress);
     console.log("sendAddress in next", userFriendlyAddress);
   }, [isLoaded, sendMessage, userFriendlyAddress]);
@@ -82,13 +80,16 @@ const Game = () => {
           <button className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
             📊
           </button>
-          <button className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+          <button
+            className="w-8 h-8 bg-white rounded-lg flex items-center justify-center"
+            onClick={() => router.push("/ton")}
+          >
             😊
           </button>
           <button className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
             👤
           </button>
-          <audio src="/bgm.mp3" muted={false} autoPlay/>
+          <audio src="/bgm.mp3" muted={false} autoPlay />
         </div>
       </div>
     </div>
