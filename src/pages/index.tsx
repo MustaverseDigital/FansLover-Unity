@@ -54,6 +54,7 @@ const Game = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100">
       {/* Top Bar */}
+      <audio src="/bgm.mp3" autoPlay loop muted={false} allow="autoplay" />
       <div className="absolute top-4 left-0 right-0 flex justify-between items-center p-2">
         <div className="flex items-center justify-evenly bg-white rounded-3xl p-3">
           <div className="bg-orange-400 w-6 h-6 rounded-full"></div>
