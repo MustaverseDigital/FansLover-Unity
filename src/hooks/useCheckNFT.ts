@@ -44,23 +44,27 @@ export const useCheckNFT = (
       const nextIndex = collectionData.nextItemId;
       // console.log(`Next item index: ${nextIndex}`);
       for (let i = 0; i < nextIndex; i++) {
-        const itemAddress = await nftCollectionContract.getItemAddressByIndex(
-          i
-        );
-        // console.log(`Item address: ${itemAddress.toString()}`);
-        if (tonClient) {
-          const nftItem = tonClient.open(
-            NftItem.createFromAddress(itemAddress)
+        try {
+          const itemAddress = await nftCollectionContract.getItemAddressByIndex(
+            i
           );
-          const nftItemData = await nftItem.getNftData();
-          if (
-            walletAddress.toString() === nftItemData.ownerAddress.toString()
-          ) {
-            setIsOwnerStatus(true);
-            console.log("nftItemData", nftItemData);
-            setNFTData(nftItemData as NFTData);
-            break;
+          // console.log(`Item address: ${itemAddress.toString()}`);
+          if (tonClient) {
+            const nftItem = tonClient.open(
+              NftItem.createFromAddress(itemAddress)
+            );
+            const nftItemData = await nftItem.getNftData();
+            if (
+              walletAddress.toString() === nftItemData.ownerAddress.toString()
+            ) {
+              setIsOwnerStatus(true);
+              console.log("nftItemData", nftItemData);
+              setNFTData(nftItemData as NFTData);
+              break;
+            }
           }
+        } catch (error) {
+          console.log("error", error);
         }
       }
       setCheckStatus(true);

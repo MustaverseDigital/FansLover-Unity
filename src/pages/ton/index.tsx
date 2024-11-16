@@ -10,11 +10,14 @@ import { useCheckNFT } from "@/hooks/useCheckNFT";
 const MintNFT = () => {
   // const { tonClient } = useApp();
   const [loading, setLoading] = useState(false);
-  const NFT_COLLECTION_ADDRESS = Address.parse(
-    "EQC8cTgmeDjB3I120aOnVkDrwYAqEn_8ou4ifZtdDiPTcmHY"
-  );
+
   const address = useTonAddress();
   const { network, sender, walletAddress } = useTonConnect();
+  const NFT_COLLECTION_ADDRESS = Address.parse(
+    network === CHAIN.MAINNET
+      ? ""
+      : "EQAXju2d1HY2ObK-pVmcbYx7ukMB_Jm0JzzW-iR81d7uLcAF"
+  );
   const { isOwnerStatus, checkStatus, NFTData } = useCheckNFT(
     NFT_COLLECTION_ADDRESS,
     walletAddress
@@ -42,7 +45,6 @@ const MintNFT = () => {
     if (address === "") return;
 
     setLoading(true);
-    // const url = `https://tonapi.io/v2/blockchain/accounts/${NFT_COLLECTION_ADDRESS}/transactions?after_lt=0&sort_order=desc`;
     const endpoint = await getHttpEndpoint({
       network: network === CHAIN.MAINNET ? "mainnet" : "testnet",
     });
@@ -56,9 +58,9 @@ const MintNFT = () => {
     try {
       const collectionData = await nftCollection.getCollectionData();
       await nftCollection.sendMintNft(sender, {
-        value: toNano("0.04"),
+        value: toNano("0.005"),
         queryId: randomSeed,
-        amount: toNano("0.014"),
+        amount: toNano("0.005"),
         itemIndex: collectionData.nextItemId,
         itemOwnerAddress: Address.parse(address),
         itemContentUrl: `item.json`,
@@ -85,10 +87,13 @@ const MintNFT = () => {
         </h1>
 
         <div className="space-y-6">
-          {!checkStatus && (
+          {!checkStatus && !walletAddress && (
             <p className="text-center font-bold text-lg">
               Connect wallet first
             </p>
+          )}
+          {!checkStatus && walletAddress && (
+            <p className="text-center font-bold text-lg">Checking NFT status</p>
           )}
           {checkStatus && !isOwnerStatus && (
             <button
@@ -103,6 +108,17 @@ const MintNFT = () => {
               {loading ? "Minting..." : "Mint NFT"}
             </button>
           )}
+          <button
+            onClick={() => {
+              handleMint();
+            }}
+            disabled={loading || isOwnerStatus}
+            className={`w-full px-4 py-2 rounded-md text-white flex items-center justify-center gap-2
+              ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"}`}
+          >
+            {loading && <div className="w-4 h-4 animate-spin" />}
+            {loading ? "Minting..." : "Mint NFT"}
+          </button>
           {checkStatus && isOwnerStatus && NFTData && (
             <div className="text-center">
               {/* {NFTData?.content.toBoc()} */}
