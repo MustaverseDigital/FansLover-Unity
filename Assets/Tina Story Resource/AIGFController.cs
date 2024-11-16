@@ -12,19 +12,12 @@ using Random = UnityEngine.Random;
 public class AIGFController : MonoBehaviour
 {
     [SerializeField] private string url = "https://ai-gf.tinalee.bot/chat";
-    [SerializeField] private int userId = 11;
+    [SerializeField] private string userId = "Unknow";
     [SerializeField] private Text debugUI;
-
-
-    private void Start()
-    {
-        // for demo 
-        userId = Random.Range(0, 10000);
-    }
 
     public void SetUserID(string userAddress)
     {
-        //userId = userAddress;
+        userId = userAddress;
         debugUI.text = userAddress;
     }
 
