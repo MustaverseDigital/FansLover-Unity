@@ -1,7 +1,7 @@
 import { NftCollection } from "@/wrappers/NftCollection";
 import { Address, OpenedContract } from "@ton/core";
 import { TonClient } from "@ton/ton";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useNftCollection = (
   address: Address,
@@ -9,16 +9,19 @@ export const useNftCollection = (
 ) => {
   const [collection, setCollection] =
     useState<OpenedContract<NftCollection> | null>(null);
-  useEffect(() => {
-    if (tonClient == null) {
-      return;
-    }
+  // 使用 useCallback 來記憶化初始化集合的函數
+  const initializeCollection = useCallback(() => {
+    if (!tonClient) return null;
 
-    const nftCollection = tonClient.open(
-      NftCollection.createFromAddress(address)
-    );
-    setCollection(nftCollection);
+    return tonClient.open(NftCollection.createFromAddress(address));
   }, [address, tonClient]);
+
+  useEffect(() => {
+    const nftCollection = initializeCollection();
+    if (nftCollection) {
+      setCollection(nftCollection);
+    }
+  }, [initializeCollection]);
 
   return collection;
 };

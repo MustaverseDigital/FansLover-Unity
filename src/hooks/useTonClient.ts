@@ -7,19 +7,30 @@ import { useTonConnect } from "./useTonConnect";
 export const useTonClient = () => {
   const { network } = useTonConnect();
   const [client, setClient] = useState<TonClient>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!network) return;
-    (async () => {
-      const endpoint = await getHttpEndpoint({
-        network: network === CHAIN.MAINNET ? "mainnet" : "testnet",
-      });
-      const tonClient = new TonClient({ endpoint });
-      setClient(tonClient);
-    })();
-  }, [network]);
+    async function initializeClient() {
+      try {
+        if (!network) return;
 
+        const endpoint = await getHttpEndpoint({
+          network: network === CHAIN.MAINNET ? "mainnet" : "testnet",
+        });
+
+        const newClient = new TonClient({ endpoint });
+        setClient(newClient);
+      } catch (error) {
+        console.error("Failed to initialize TonClient:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    initializeClient();
+  }, [network]);
   return {
     client,
+    loading,
   };
 };

@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { CHAIN, TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import React, { useCallback, useState } from "react";
+import { CHAIN, useTonAddress } from "@tonconnect/ui-react";
 import { Address, toNano } from "@ton/core";
 import { TonClient } from "@ton/ton";
 import { useTonConnect } from "@/hooks/useTonConnect";
 import { getHttpEndpoint } from "@orbs-network/ton-access";
 import { NftCollection as NftCollectionWrapper } from "@/wrappers/NftCollection";
 import { useCheckNFT } from "@/hooks/useCheckNFT";
-import axios from "axios";
 import { useApp } from "@/context/app-context";
 import { useNftCollection } from "@/hooks/useNftCollection";
 import { NFT_COLLECTION_ADDRESS } from "@/constants/address";
@@ -17,20 +16,17 @@ export interface UserData {
   love: number;
 }
 
-const MintNFT = () => {
-  // const { tonClient } = useApp();
-  const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const { network, sender, walletAddress } = useTonConnect();
+const MintButton = ({ canMint }: { canMint: boolean }) => {
   const { tonClient } = useApp();
+  const [loading, setLoading] = useState(false);
+  const { network, sender, walletAddress } = useTonConnect();
   const address = useTonAddress();
   const nftCollection = useNftCollection(NFT_COLLECTION_ADDRESS, tonClient);
   const { isOwnerStatus, checkStatus } = useCheckNFT(
     nftCollection,
-    walletAddress,
+    canMint ? walletAddress : null,
     tonClient
   );
-
   const waitTxFinalized = useCallback(
     async (txlt: string, address: Address, tonClient: TonClient) => {
       for (let attempt = 0; attempt < 10; attempt++) {
@@ -45,7 +41,6 @@ const MintNFT = () => {
     },
     []
   );
-
   const sleep = (ms: number): Promise<void> => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
@@ -87,64 +82,31 @@ const MintNFT = () => {
       setLoading(false);
     }
   }, [address]);
-  const getUserData = useCallback(async () => {
-    // curl "https://ai-gf.tinalee.bot/get_status?userid=101"
-    try {
-      const res = await axios.get(
-        `https://ai-gf.tinalee.bot/get_status?userid=${101}`
-      );
-      const data = res.data;
-      console.log(data);
-      setUserData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [address]);
-  useEffect(() => {
-    if (address) {
-      getUserData();
-    }
-  }, [address]);
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100">
-      <TonConnectButton />
-      <div className="max-w-2xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-6">
-          TON NFT Minter (with Spline)
-        </h1>
 
-        <div className="space-y-6">
-          {!address && (
-            <p className="text-center font-bold text-lg">
-              Connect wallet first
-            </p>
-          )}
-          {address && !checkStatus && (
-            <p className="text-center font-bold text-lg">Checking NFT status</p>
-          )}
-          {address && checkStatus && !isOwnerStatus && !userData?.unlocked && (
-            <button
-              onClick={() => {
-                handleMint();
-              }}
-              disabled={loading || isOwnerStatus}
-              className={`w-full px-4 py-2 rounded-md text-white flex items-center justify-center gap-2
-              ${loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"}`}
-            >
-              {loading && <div className="w-4 h-4 animate-spin" />}
-              {loading ? "Minting..." : "Mint NFT"}
-            </button>
-          )}
-          {address && checkStatus && isOwnerStatus && (
-            <div className="text-center">
-              {/* {NFTData?.content.toBoc()} */}
-              <p>You are the owner of the NFT collection!!</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+  return (
+    <button
+      onClick={() => {
+        handleMint();
+      }}
+      disabled={loading || isOwnerStatus || !checkStatus || !canMint}
+      className={`rounded-3xl w-1/2 p-1 sm:p-2 md:p-3 flex items-center justify-center
+        ${
+          loading || isOwnerStatus || !checkStatus || !canMint
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-white cursor-pointer"
+        }`}
+    >
+      <span className="font-light">
+        {loading
+          ? "Minting..."
+          : isOwnerStatus
+          ? "Already minted"
+          : canMint
+          ? "Mint NFT"
+          : "need 100 love to mint NFT"}
+      </span>
+    </button>
   );
 };
 
-export default MintNFT;
+export default MintButton;

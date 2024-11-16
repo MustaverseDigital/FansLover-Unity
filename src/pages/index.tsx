@@ -1,17 +1,26 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useTonAddress, TonConnectButton } from "@tonconnect/ui-react";
 import { useRouter } from "next/router";
-import axios from 'axios';
-import Image from 'next/image';
+import axios from "axios";
+import Image from "next/image";
 import fansLoverLogo from "/public/fansLoverLogo.jpg";
+import MintButton from "@/components/mintButton";
+// import MintButton from "@/components/mintButton";
+
+interface UserData {
+  unlocked: boolean;
+  love: number;
+  userid: number;
+}
 
 const Game = () => {
-  const [unlockMinter, setUnlockMinter] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [loveValue, setLoveValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isApiError, setIsApiError] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [isCanMint, setIsCanMint] = useState(false);
+  const userFriendlyAddress = useTonAddress();
 
   const { unityProvider, isLoaded, sendMessage } = useUnityContext({
     loaderUrl: "/Build/docs.loader.js",
@@ -20,8 +29,6 @@ const Game = () => {
     codeUrl: "/Build/docs.wasm",
   });
   const router = useRouter();
-
-  const userFriendlyAddress = useTonAddress();
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -59,56 +66,64 @@ const Game = () => {
   }, [devicePixelRatio]);
 
   useEffect(() => {
-    const handleClick = () => { setIsOpen(false) };
-    addEventListener('click', handleClick);
+    const handleClick = () => {
+      setIsOpen(false);
+    };
+    addEventListener("click", handleClick);
     return () => {
-      removeEventListener('click', handleClick);
+      removeEventListener("click", handleClick);
     };
   }, [isOpen]);
 
   const AffectionCheck = async () => {
     setIsApiError(false);
     setIsLoading(true);
+    const userid = userFriendlyAddress;
     try {
-      const response = await axios.post('https://ai-gf.tinalee.bot/chat', {
-        message: "現在好感度是多少",
-        userId: 11,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = JSON.parse(response.data);
+      const res = await axios.get(
+        `https://ai-gf.tinalee.bot/get_status?userid=${101}`
+      );
+      const data = res.data as UserData;
       const isUnlocked = Boolean(data.unlocked);
-      console.log('love:', data);
+      setUserData(data);
+      console.log("isUnlocked", isUnlocked);
       if (isUnlocked && isUnlocked !== null) {
-        setLoveValue(data.love);
-        setUnlockMinter(true);
-        setIsOpen(true);
+        setIsCanMint(data.love >= 100);
       }
       if (!isUnlocked) {
-        console.log('love:', isUnlocked);
-        console.log(data.love)
-        setLoveValue(data.love === undefined ? data.text : data.love);
-        setIsOpen(true);
+        setIsCanMint(false);
       }
-      setIsLoading(false);
     } catch (error) {
-      console.error('Error sending API request:', error);
+      console.error("Error sending API request:", error);
       setIsApiError(true);
+      // setIsOpen(true);
+    } finally {
       setIsLoading(false);
-      setIsOpen(true);
     }
   };
+  useEffect(() => {
+    if (userFriendlyAddress) {
+      const intervalId = setInterval(() => {
+        AffectionCheck();
+      }, 5000);
+      return () => clearInterval(intervalId);
+    }
+  }, [userFriendlyAddress]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100">
       {/* Top Bar */}
       <div className="absolute top-4 left-0 right-0 flex justify-between items-center p-2">
         <div className="flex items-center justify-evenly gap-3">
-          <Image src={fansLoverLogo} alt="fans_lover_logo" width={50} height={50} className="rounded-full" />
-          <div className='flex flex-col items-center justify-center gap-1'>
-            <span className="font-bold">FansNetwork  </span>
+          <Image
+            src={fansLoverLogo}
+            alt="fans_lover_logo"
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+          <div className="flex flex-col items-center justify-center gap-1">
+            <span className="font-bold">FansNetwork </span>
           </div>
         </div>
         <TonConnectButton />
@@ -127,8 +142,8 @@ const Game = () => {
       </div>
       {/* Bottom Nav */}
       <div className="absolute bottom-2 left-0 right-0 px-2 ">
-        <div className="flex justify-center items-center gap-5">
-          <button className=" w-[120px] md:w-auto h-12 p-3 bg-white rounded-3xl flex items-center justify-center">
+        <div className="flex justify-center items-center gap-4">
+          {/* <button className=" w-[120px] md:w-auto h-12 p-3 bg-white rounded-3xl flex items-center justify-center">
             {isLoading ? (
               <div className="flex items-center justify-center">
                 <div className="relative w-8 h-8">
@@ -137,56 +152,29 @@ const Game = () => {
                 </div>
               </div>
             ) : (
-              <div className='flex justify-center items-center' onClick={AffectionCheck}>
+              <div
+                className="flex justify-center items-center"
+                onClick={AffectionCheck}
+              >
                 <div>❤️</div>
-                <div className="font-light" >Affection Check</div>
+                <div className="font-light">Affection Check</div>
               </div>
             )}
-          </button>
-          <button
-            className={`rounded-3xl p-1 sm:p-2 md:p-3 flex items-center justify-center ${unlockMinter ? 'bg-white' : 'bg-gray-400'} `}
-            onClick={() => {
-              if (unlockMinter) {
-                router.push("/ton");
-              }
-            }}
-            disabled={!unlockMinter}
+          </button> */}
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-base">Current affection level:</p>
+            <p className="text-red-500">{userData?.love || 0}</p>
+          </div>
+          <MintButton canMint={isCanMint} />
+          {/* <button
+            className="font-bold bg-white rounded-3xl p-2"
+            onClick={() => router.push("/ton")}
           >
-            <span className="font-light">
-              {unlockMinter ? "Mint NFT" : "need 100 love to mint NFT"}
-              {/* go th Minter */}
-            </span>
-          </button>
-          <button className='font-bold bg-white rounded-3xl p-2'
-            onClick={() => router.push("/ton")}>test btn</button>
+            test btn
+          </button> */}
           <audio src="/bgm.mp3" muted={false} autoPlay />
         </div>
       </div>
-      {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg p-6 w-80">
-            {isApiError ? (
-              <p className="text-red-500 text-center">
-                Error fetching data from the server. Please try again later.
-              </p>
-            ) : (
-              <div className="text-center">
-                <h2 className="text-xl font-bold mb-4">Current Affection Level</h2>
-                <p className="text-lg">Your current affection level is:</p>
-                <p className="text-red-500">{loveValue}</p>
-              </div>
-            )}
-            <div className="flex justify-center items-center">
-              <button
-                className="mt-4 p-2 bg-blue-500 text-white rounded-lg"
-                onClick={() => setIsOpen(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

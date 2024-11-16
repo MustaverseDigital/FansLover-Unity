@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 import { TonClient } from "@ton/ton";
 import { useTonClient } from "@/hooks/useTonClient";
-
 type TAppProvider = {
   children: ReactNode;
 };
