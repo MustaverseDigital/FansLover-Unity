@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { useTonAddress, TonConnectButton } from "@tonconnect/ui-react";
-import { useRouter } from "next/router";
 import axios from "axios";
 import Image from "next/image";
 import fansLoverLogo from "/public/fansLoverLogo.jpg";
@@ -28,7 +27,6 @@ const Game = () => {
     frameworkUrl: "/Build/docs.framework.js",
     codeUrl: "/Build/docs.wasm",
   });
-  const router = useRouter();
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -108,7 +106,13 @@ const Game = () => {
       }, 5000);
       return () => clearInterval(intervalId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userFriendlyAddress]);
+
+  useEffect(() => {
+    console.log('isLoading', isLoading);
+    console.log('isApiError', isApiError);
+  }, [isLoading, isApiError]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-sky-100">
