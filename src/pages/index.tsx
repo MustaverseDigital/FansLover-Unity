@@ -110,8 +110,8 @@ const Game = () => {
   }, [userFriendlyAddress]);
 
   useEffect(() => {
-    console.log('isLoading', isLoading);
-    console.log('isApiError', isApiError);
+    console.log("isLoading", isLoading);
+    console.log("isApiError", isApiError);
   }, [isLoading, isApiError]);
 
   return (
@@ -127,7 +127,7 @@ const Game = () => {
             className="rounded-full"
           />
           <div className="flex flex-col items-center justify-center gap-1">
-            <span className="font-bold">FansNetwork </span>
+            <span className="font-bold">FansLover </span>
           </div>
         </div>
         <TonConnectButton />
@@ -146,39 +146,21 @@ const Game = () => {
       </div>
       {/* Bottom Nav */}
       <div className="absolute bottom-2 left-0 right-0 px-2 ">
-        <div className="flex justify-center items-center gap-4">
-          {/* <button className=" w-[120px] md:w-auto h-12 p-3 bg-white rounded-3xl flex items-center justify-center">
-            {isLoading ? (
-              <div className="flex items-center justify-center">
-                <div className="relative w-8 h-8">
-                  <div className="absolute top-0 left-0 w-full h-full border-4 border-blue-200 rounded-full"></div>
-                  <div className="absolute top-0 left-0 w-full h-full border-4 border-blue-500 rounded-full animate-spin border-t-transparent"></div>
-                </div>
-              </div>
-            ) : (
-              <div
-                className="flex justify-center items-center"
-                onClick={AffectionCheck}
-              >
-                <div>❤️</div>
-                <div className="font-light">Affection Check</div>
-              </div>
+        <div className="flex justify-center items-center">
+          <p className="text-red-500 flex">
+            {Array.from(
+              { length: Math.floor((userData?.love || 0) / 10) },
+              (_, index) => (
+                <span key={index}>💗</span>
+              )
             )}
-          </button> */}
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-base">Current affection level:</p>
-            <p className="text-red-500">{userData?.love || 0}</p>
-          </div>
+          </p>
+        </div>
+        <div className="flex justify-center items-center gap-1">
           <MintButton canMint={isCanMint} />
-          {/* <button
-            className="font-bold bg-white rounded-3xl p-2"
-            onClick={() => router.push("/ton")}
-          >
-            test btn
-          </button> */}
-          <audio src="/bgm.mp3" muted={false} autoPlay />
         </div>
       </div>
+      <audio src="/bgm.mp3" muted={false} autoPlay />
     </div>
   );
 };

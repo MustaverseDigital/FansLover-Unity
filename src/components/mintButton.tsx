@@ -103,7 +103,7 @@ const MintButton = ({ canMint }: { canMint: boolean }) => {
           ? "Already minted"
           : canMint
           ? "Mint NFT"
-          : "need 100 love to mint NFT"}
+          : "need 10 💗 to mint NFT"}
       </span>
     </button>
   );
