@@ -91,7 +91,7 @@ const MintNFT = () => {
     // curl "https://ai-gf.tinalee.bot/get_status?userid=101"
     try {
       const res = await axios.get(
-        `https://ai-gf.tinalee.bot/get_status?userid=${101}`
+        `https://ai-gf.tinalee.bot/get_status?userid=${address}`
       );
       const data = res.data;
       console.log(data);

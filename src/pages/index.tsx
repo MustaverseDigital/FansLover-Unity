@@ -81,7 +81,7 @@ const Game = () => {
     const userid = userFriendlyAddress;
     try {
       const res = await axios.get(
-        `https://ai-gf.tinalee.bot/get_status?userid=${101}`
+        `https://ai-gf.tinalee.bot/get_status?userid="${userid}"`
       );
       const data = res.data as UserData;
       const isUnlocked = Boolean(data.unlocked);
