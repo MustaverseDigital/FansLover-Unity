@@ -79,7 +79,7 @@ const Game = () => {
     const userid = userFriendlyAddress;
     try {
       const res = await axios.get(
-        `https://ai-gf.tinalee.bot/get_status?userid="${userid}"`
+        `https://ai-gf.tinalee.bot/get_status?userid=${userid}`
       );
       const data = res.data as UserData;
       const isUnlocked = Boolean(data.unlocked);
@@ -103,7 +103,7 @@ const Game = () => {
     if (userFriendlyAddress) {
       const intervalId = setInterval(() => {
         AffectionCheck();
-      }, 5000);
+      }, 10000);
       return () => clearInterval(intervalId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
