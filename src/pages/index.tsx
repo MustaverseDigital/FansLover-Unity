@@ -161,7 +161,7 @@ const Game = () => {
           <MintButton canMint={isCanMint} />
         </div>
       </div>
-      <audio src="/bgm.mp3" muted={false} autoPlay />
+      <audio src="/bgm.mp3" muted={false} autoPlay loop />
     </div>
   );
 };
