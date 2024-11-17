@@ -27,23 +27,7 @@ const MintButton = ({ canMint }: { canMint: boolean }) => {
     canMint ? walletAddress : null,
     tonClient
   );
-  const waitTxFinalized = useCallback(
-    async (txlt: string, address: Address, tonClient: TonClient) => {
-      for (let attempt = 0; attempt < 10; attempt++) {
-        await sleep(2000);
-        const result = await tonClient.getContractState(address);
-        const lastLx = result.lastTransaction?.lt;
-        if (lastLx !== txlt) {
-          console.log(`Transaction ${txlt} finalized`);
-          break;
-        }
-      }
-    },
-    []
-  );
-  const sleep = (ms: number): Promise<void> => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  };
+
   const randomSeed = Math.floor(Math.random() * 10000);
   const handleMint = useCallback(async () => {
     if (address === null) return;
@@ -69,13 +53,6 @@ const MintButton = ({ canMint }: { canMint: boolean }) => {
         itemOwnerAddress: Address.parse(address),
         itemContentUrl: `item.json`,
       });
-
-      const result = await tonClient.getContractState(NFT_COLLECTION_ADDRESS);
-      console.log(result);
-      const txLt = result.lastTransaction?.lt ?? "";
-      console.log(`Last transaction: ${txLt}`);
-
-      await waitTxFinalized(txLt, NFT_COLLECTION_ADDRESS, tonClient);
     } catch (error) {
       console.error(error);
     } finally {
@@ -83,28 +60,39 @@ const MintButton = ({ canMint }: { canMint: boolean }) => {
     }
   }, [address]);
 
+  // 根據條件動態調整按鈕文字
+  const buttonText = loading
+    ? "Minting..."
+    : !address
+    ? "Please connect your wallet"
+    : isOwnerStatus
+    ? "Already minted"
+    : canMint
+    ? "Mint NFT"
+    : "Need 10 💗 to mint NFT";
+
   return (
     <button
       onClick={() => {
-        handleMint();
+        if (address) {
+          handleMint();
+        }
       }}
-      disabled={loading || isOwnerStatus || !checkStatus || !canMint}
+      disabled={
+        loading ||
+        isOwnerStatus ||
+        !checkStatus ||
+        !canMint ||
+        !address // 禁用按鈕如果未連接錢包
+      }
       className={`rounded-3xl w-1/2 p-1 sm:p-2 md:p-3 flex items-center justify-center
         ${
-          loading || isOwnerStatus || !checkStatus || !canMint
+          loading || isOwnerStatus || !checkStatus || !canMint || !address
             ? "bg-gray-400 cursor-not-allowed"
             : "bg-white cursor-pointer"
         }`}
     >
-      <span className="font-light">
-        {loading
-          ? "Minting..."
-          : isOwnerStatus
-          ? "Already minted"
-          : canMint
-          ? "Mint NFT"
-          : "need 10 💗 to mint NFT"}
-      </span>
+      <span className="font-light">{buttonText}</span>
     </button>
   );
 };

@@ -101,6 +101,7 @@ const Game = () => {
   };
   useEffect(() => {
     if (userFriendlyAddress) {
+      AffectionCheck();
       const intervalId = setInterval(() => {
         AffectionCheck();
       }, 10000);
