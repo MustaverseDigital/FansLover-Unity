@@ -133,8 +133,8 @@ const Game = () => {
         <Unity
           unityProvider={unityProvider}
           style={{
-            width: "100%",
             height: "calc(100vh - 11rem)",
+            width: `calc((100vh - 11rem) * (9 / 16))`,
             borderRadius: "15px",
           }}
           devicePixelRatio={devicePixelRatio}
