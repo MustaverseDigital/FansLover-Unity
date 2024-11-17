@@ -31,7 +31,7 @@ public class AIGFController : MonoBehaviour
     {
         // 建立請求
         UnityWebRequest request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes($"{{\"message\": \"{message}\", \"userId\": {userId}}}");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes($"{{\"message\": \"{message}\", \"userId\": \"{userId}\"}}");
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
