@@ -6,7 +6,8 @@ public class CatchEventHandler : MonoBehaviour
 {
     private AIGFController _aigfController;
     [SerializeField] private Scrollbar scrollbarUI;
-
+    [SerializeField] private GameObject cardCanvas;
+    
     private void Start()
     {
         _aigfController = GetComponent<AIGFController>();
@@ -21,6 +22,11 @@ public class CatchEventHandler : MonoBehaviour
         if (obj.Name.Equals("PlayerReply"))
         {
             AddAiTinaReply(obj.Value);
+        }
+
+        if (obj.Name.Equals("reward"))
+        {
+            cardCanvas.SetActive(obj.Value == "1");
         }
     }
 

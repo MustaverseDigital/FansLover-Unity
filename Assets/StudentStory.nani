@@ -1,5 +1,6 @@
 @printer Dialogue
 @back Tina_Result_1
+@set reward=0
 
 Tina: *After hours of studying, Tina stretches her arms and lets out a small sigh.*
 
@@ -23,4 +24,6 @@ Tina: But really, I’m glad I met you. Studying feels a little less lonely with
 
 Tina: *Tina smiles softly, her cheeks slightly flushed, as she gazes at her tutor with a newfound warmth.*
 Tina: This is a small gift for you *Click mint button to claim Gift*
+@wait 1.5
+@set reward=1
 @stop
