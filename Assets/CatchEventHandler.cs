@@ -32,7 +32,7 @@ public class CatchEventHandler : MonoBehaviour
 
     private void AddAiTinaReply(string playerReplyMessage)
     {
-        scrollbarUI.gameObject.SetActive(true);
+        //scrollbarUI.gameObject.SetActive(true);
         _aigfController.SendMessageToApi(playerReplyMessage , ResponseCallback);
     }
 
@@ -49,5 +49,10 @@ public class CatchEventHandler : MonoBehaviour
             .SetVariableValue("loveValue", $"{obj.love}");
         // ReSharper disable once PossibleLossOfFraction
         scrollbarUI.size = (float) obj.love / 100;
+    }
+
+    public void SetCardCanvasActive(bool active)
+    {
+        cardCanvas.SetActive(active);
     }
 }

@@ -9,7 +9,10 @@
       <change beforePath="$PROJECT_DIR$/Assets/CatchEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CatchEventHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Dialog Only Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Dialog Only Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StudentStory.nani" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StudentStory.nani" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tina Story Resource/AIGFController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tina Story Resource/AIGFController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Build/docs.data" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Build/docs.data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Build/docs.framework.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Build/docs.framework.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Build/docs.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Build/docs.wasm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +100,7 @@
       <workItem from="1731308378431" duration="11120000" />
       <workItem from="1731768263133" duration="3474000" />
       <workItem from="1732022279425" duration="4032000" />
+      <workItem from="1732637143641" duration="2165000" />
     </task>
     <servers />
   </component>

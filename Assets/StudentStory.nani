@@ -23,7 +23,7 @@ Tina: But really, I’m glad I met you. Studying feels a little less lonely with
 @wait 1.5
 
 Tina: *Tina smiles softly, her cheeks slightly flushed, as she gazes at her tutor with a newfound warmth.*
-Tina: This is a small gift for you *Click mint button to claim Gift*
+Tina: This is a small gift for you
 @wait 1.5
 @set reward=1
 @stop

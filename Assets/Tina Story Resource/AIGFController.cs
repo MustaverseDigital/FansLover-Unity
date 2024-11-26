@@ -19,6 +19,7 @@ public class AIGFController : MonoBehaviour
     {
         userId = userAddress;
         debugUI.text = userAddress;
+        StartCoroutine(SendRequestGetStatus());
     }
 
     // 呼叫 API 的方法
@@ -27,11 +28,32 @@ public class AIGFController : MonoBehaviour
         StartCoroutine(SendRequestCoroutine(message, responseCallback));
     }
 
-    IEnumerator SendRequestCoroutine(string message, Action<APIResponse> responseCallback = null)
+    // ReSharper disable Unity.PerformanceAnalysis
+    private IEnumerator SendRequestGetStatus()
+    {
+        var finalUrl = $"https://ai-gf.tinalee.bot/get_status?userid={userId}";
+
+        UnityWebRequest request = new UnityWebRequest(finalUrl, "GET");
+        request.downloadHandler = new DownloadHandlerBuffer();
+        yield return request.SendWebRequest();
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log($"{request.downloadHandler.text}");
+            var response = JsonUtility.FromJson<StatusResponse>(request.downloadHandler.text);
+            FindObjectOfType<CatchEventHandler>().SetCardCanvasActive(response.unlocked);
+        }
+        else
+        {
+            Debug.LogError($"Request failed: {request.error}");
+        }
+    }
+
+    private IEnumerator SendRequestCoroutine(string message, Action<APIResponse> responseCallback = null)
     {
         // 建立請求
         UnityWebRequest request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes($"{{\"message\": \"{message}\", \"userId\": \"{userId}\"}}");
+        byte[] bodyRaw =
+            System.Text.Encoding.UTF8.GetBytes($"{{\"message\": \"{message}\", \"userId\": \"{userId}\"}}");
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
@@ -55,7 +77,7 @@ public class AIGFController : MonoBehaviour
         {
             Debug.LogError("API 請求失敗: " + request.error);
             Engine.GetService<CustomVariableManager>()
-                .SetVariableValue("LLM", $"Tina 壞掉惹(\u260d﹏\u2070) {request.error}");
+                .SetVariableValue("LLM", $"Hahaha can you say it again?");
             Engine.GetService<CustomVariableManager>()
                 .SetVariableValue("LLMResponse", "1");
         }
@@ -67,5 +89,13 @@ public class AIGFController : MonoBehaviour
         public string text;
         public int love;
         public bool unlocked;
+    }
+    
+    [Serializable]
+    public class StatusResponse
+    {
+        public int love;
+        public bool unlocked;
+        public string userid;
     }
 }
